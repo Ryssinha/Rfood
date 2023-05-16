@@ -1,8 +1,42 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :chefs, only: [:index, :show] do
+    resource :address, only: [:show]
+    resource :city, only: [:show]
+    resource :state, only: [:show]
+    resources :telephones, only: [:index]
+    resources :dishes, only: [:index]
+  end
+
+
+  resources :coupons, only: [:index, :show] do
+    resources :orders, only: [:index]
+  end
+
+
+  resources :customers, only: [:index, :show] do
+    resources :orders, only: [:index]
+    resources :addresses, only: [:show]
+    resources :telephones, only: [:index]
+    resources :cards, only: [:show]
+  end
+
+  resources :dishes, only: [:index, :show] do
+    resources :categories, only: :index
+  end
+
+  resources :orders, only: [:index, :show] do
+    resources :items, only: [:index, :show]
+    resources :dishes, only: [:index, :show]
+    resource :city, only: [:show]
+    resource :payment, only: [:show]
+  end
+
+  resources :payments, only: [:index, :show] do
+    resources :customers, only: [:show]
+  end
+
+  resources :states, only: [:index, :show] do
+    resources :cities, only: [:index]
+  end
 end
