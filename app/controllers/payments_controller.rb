@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
   def index
-    @payment = Payment.all
-    render json: @payment
+    @payments = Payment.all
+    render json: @payments
   end
 
   def show
