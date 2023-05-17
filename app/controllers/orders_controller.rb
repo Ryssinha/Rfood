@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   def index
-    @order = Order.all
-    render json: @order
+    @orders = Order.all
+    render json: @orders
   end
 
   def show
