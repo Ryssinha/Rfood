@@ -5,8 +5,8 @@ FactoryBot.define do
     chef
     name { Faker::Alphanumeric.alpha(number: 30) }
     description { Faker::Lorem.sentence }
-    available { false }
-    active { false }
+    available { true }
+    active { true }
     unit_price { Faker::Commerce.price }
 
     trait :active do
