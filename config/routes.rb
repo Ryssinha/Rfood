@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :customers, only: [:index, :show] do
     resources :orders, only: [:index]
-    resource :addresses, only: [:index]
+    resources :addresses, only: [:index]
     resources :telephones, only: [:index]
     resources :cards, only: [:show]
   end
