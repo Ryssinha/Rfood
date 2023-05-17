@@ -15,18 +15,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_123217) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.string "name"
-    t.string "public_place", null: false
+    t.string "name", limit: 255
+    t.string "public_place", limit: 255, null: false
     t.string "zip_code", limit: 8, null: false
-    t.string "reference"
-    t.string "complement"
     t.string "number", limit: 15, null: false
-    t.string "neighborhood", null: false
+    t.string "neighborhood", limit: 255, null: false
     t.bigint "city_id", null: false
     t.string "addressable_type"
     t.bigint "addressable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reference", limit: 255
+    t.string "complement", limit: 255
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
     t.index ["city_id"], name: "index_addresses_on_city_id"
   end
@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_123217) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,7 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_123217) do
   end
 
   create_table "cities", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", limit: 255, null: false
     t.bigint "state_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -106,7 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_123217) do
 
   create_table "dishes", force: :cascade do |t|
     t.bigint "chef_id", null: false
-    t.string "name", null: false
+    t.string "name", limit: 255, null: false
     t.text "description", null: false
     t.boolean "available", default: false, null: false
     t.boolean "active", default: false, null: false
@@ -153,7 +153,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_123217) do
   end
 
   create_table "states", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", limit: 255, null: false
     t.string "acronym", limit: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -169,10 +169,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_123217) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", limit: 255, null: false
     t.string "cpf", limit: 11, null: false
-    t.string "email", null: false
-    t.string "password", null: false
+    t.string "email", limit: 255, null: false
+    t.string "password", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cpf", "email"], name: "index_users_on_cpf_and_email", unique: true
