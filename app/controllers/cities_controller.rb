@@ -5,7 +5,7 @@ class CitiesController < ApplicationController
   end
 
   def show
-    @cities = City.find(params[:id])
+    @city = City.find(params[:id])
     render json: @city
   end
 end
