@@ -6,7 +6,7 @@ class CustomersController < ApplicationController
 
   def show
     if params[:id]
-      @customer = customer.find(params[:id])
+      @customer = Customer.find(params[:id])
     elsif params[:chef_id]
       chef = Chef.find(params[:chef_id])
       @customer = chef.customers
@@ -14,7 +14,7 @@ class CustomersController < ApplicationController
       payment = Payment.find(params[:payment_id])
       @customer = payment.customer
     end
-    
+
     render json: @customer
   end
 end

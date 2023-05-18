@@ -6,10 +6,13 @@ class AddressesController < ApplicationController
 
   def show
     if params[:id]
-    @address = address.find(params[:Id])
+      @address = Address.find(params[:id])
     elsif params[:chef_id]
-    chef = Chef.find(params[:chef_id])
-    @address = chef.address
+      chef = Chef.find(params[:chef_id])
+      @address = chef.address
+    elsif params[:customer_id]
+      customer = Customer.find(params[:customer_id])
+      @address = customer.address
     end
     render json: @address
   end
