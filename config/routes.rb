@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index]
     resources :addresses, only: [:index]
     resources :telephones, only: [:index]
-    resources :cards, only: [:show]
+    resources :cards, only: [:index]
   end
 
   resources :dishes, only: [:index, :show] do
@@ -26,14 +26,14 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: [:index, :show] do
-    resources :items, only: [:index, :show]
+    resources :order_items, only: [:show, :index]
     resources :dishes, only: [:index, :show]
     resource :city, only: [:show]
     resource :payment, only: [:show]
   end
 
   resources :payments, only: [:index, :show] do
-    resources :customers, only: [:show]
+    resource :customer, only: [:show]
   end
 
   resources :states, only: [:index, :show] do
