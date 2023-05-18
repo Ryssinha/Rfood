@@ -5,7 +5,10 @@ class StatesController < ApplicationController
   end
 
   def show
-    @state = State.find(params[:id])
+    if params[:chef_id]
+      chef = Chef.find(params[:chef_id])
+      @state = chef.state
+    end
     render json: @state
   end
 end

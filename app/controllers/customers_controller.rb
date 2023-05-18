@@ -5,7 +5,16 @@ class CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(params[:id])
+    if params[:id]
+      @customer = customer.find(params[:id])
+    elsif params[:chef_id]
+      chef = Chef.find(params[:chef_id])
+      @customer = chef.customers
+    elsif params[:payment_id]
+      payment = Payment.find(params[:payment_id])
+      @customer = payment.customer
+    end
+    
     render json: @customer
   end
 end
