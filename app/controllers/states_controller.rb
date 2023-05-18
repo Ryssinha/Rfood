@@ -8,7 +8,10 @@ class StatesController < ApplicationController
     if params[:chef_id]
       chef = Chef.find(params[:chef_id])
       @state = chef.state
+    else
+      @state = State.find(params[:id])
     end
     render json: @state
   end
+
 end
