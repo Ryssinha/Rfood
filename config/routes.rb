@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :chefs, only: [:index, :show] do
-    resource :address, only: [:show]
-    resource :city, only: [:show]
-    resource :state, only: [:show]
-    resources :telephones, only: [:index]
-    resources :dishes, only: [:index]
-  end
+  resources :chefs #, only: [:index, :show] do
+  #   resource :address, only: [:show]
+  #   resource :city, only: [:show]
+  #   resource :state, only: [:show]
+  #   resources :telephones, only: [:index]
+  #   resources :dishes, only: [:index]
+  # end
 
 
   resources :coupons, only: [:index, :show] do
