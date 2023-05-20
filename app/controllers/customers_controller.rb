@@ -1,20 +1,62 @@
 class CustomersController < ApplicationController
+  before_action :set_customer, only: %i[ show edit update destroy ]
+
   def index
     @customers = Customer.all
-    render json: @customers
   end
 
   def show
-    if params[:id]
+  end
+
+  def new
+    @customer = Customer.new
+  end
+
+  def edit
+  end
+
+  def create
+    @customer = Customer.new(customer_params)
+
+    respond_to do |format|
+      if @customer.save
+        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
+        format.json { render :show, status: :created, location: @customer }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @customer.update(customer_params)
+        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
+        format.json { render :show, status: :ok, location: @customer }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @customer.destroy
+
+    respond_to do |format|
+      format.html { redirect_to customers_url, notice: "Customer was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+
+    def set_customer
       @customer = Customer.find(params[:id])
-    elsif params[:chef_id]
-      chef = Chef.find(params[:chef_id])
-      @customer = chef.customers
-    elsif params[:payment_id]
-      payment = Payment.find(params[:payment_id])
-      @customer = payment.customer
     end
 
-    render json: @customer
-  end
+    def customer_params
+      params.require(:customer).permit(:user_id, :birthday)
+    end
 end
