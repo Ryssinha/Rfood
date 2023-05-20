@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @chef %>
+
+<div>
+  <%= link_to "Edit this chef", edit_chef_path(@chef) %> |
+  <%= link_to "Back to chefs", chefs_path %>
+
+  <%= button_to "Destroy this chef", @chef, method: :delete %>
+</div>
