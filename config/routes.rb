@@ -26,12 +26,13 @@ Rails.application.routes.draw do
   # end
   resources :categories
 
-  resources :orders, only: [:index, :show] do
-    resources :order_items, only: [:show, :index]
-    resources :dishes, only: [:index, :show]
-    resource :city, only: [:show]
-    resource :payment, only: [:show]
-  end
+
+  resources :orders#, only: [:index, :show] do
+  #   resources :order_items, only: [:show, :index]
+  #   resources :dishes, only: [:index, :show]
+  #   resource :city, only: [:show]
+  #   resource :payment, only: [:show]
+  # end
 
   resources :payments, only: [:index, :show] do
     resource :customer, only: [:show]
