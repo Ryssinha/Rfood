@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :dishes#, only: [:index, :show] do
   #   resources :categories, only: :index
   # end
+  resources :categories
 
   resources :orders, only: [:index, :show] do
     resources :order_items, only: [:show, :index]

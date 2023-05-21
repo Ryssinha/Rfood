@@ -1,25 +1,20 @@
 class DishesController < ApplicationController
   before_action :set_dish, only: %i[ show edit update destroy ]
 
-  # GET /dishes or /dishes.json
   def index
     @dishes = Dish.all
   end
 
-  # GET /dishes/1 or /dishes/1.json
   def show
   end
 
-  # GET /dishes/new
   def new
     @dish = Dish.new
   end
 
-  # GET /dishes/1/edit
   def edit
   end
 
-  # POST /dishes or /dishes.json
   def create
     @dish = Dish.new(dish_params)
 
@@ -34,7 +29,6 @@ class DishesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /dishes/1 or /dishes/1.json
   def update
     respond_to do |format|
       if @dish.update(dish_params)
@@ -47,7 +41,6 @@ class DishesController < ApplicationController
     end
   end
 
-  # DELETE /dishes/1 or /dishes/1.json
   def destroy
     @dish.destroy
 
@@ -58,12 +51,11 @@ class DishesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_dish
       @dish = Dish.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def dish_params
       params.require(:dish).permit(:chef_id, :name, :description, :available, :active, :unit_price)
     end
