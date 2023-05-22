@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   #   resource :payment, only: [:show]
   # end
 
+  resources :order_items
+
   resources :payments, only: [:index, :show] do
     resource :customer, only: [:show]
   end
