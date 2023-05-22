@@ -1,6 +1,6 @@
-<%= form_with(model: chef) do |form| %>
+<%= form_with(model: chef, class: "contents") do |form| %>
   <% if chef.errors.any? %>
-    <div style="color: red">
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(chef.errors.count, "error") %> prohibited this chef from being saved:</h2>
 
       <ul>
@@ -11,22 +11,32 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+  <div class="my-5">
+    <%= form.label :nome %>
+    <%= form.text_field :user_nome, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div>
-    <%= form.label :address_id, style: "display: block" %>
-    <%= form.text_field :address_id %>
+  <div class="my-5">
+    <%= form.label :CPF %>
+    <%= form.text_field :user_cpf, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div>
-    <%= form.label :approver_id, style: "display: block" %>
-    <%= form.text_field :approver_id %>
+  <div class="my-5">
+    <%= form.label :email %>
+    <%= form.text_field :user_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="my-5">
+    <%= form.label :endereço %>
+    <%= form.text_field :address_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :aprovador %>
+    <%= form.text_field :approver_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

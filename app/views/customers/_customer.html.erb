@@ -1,12 +1,23 @@
+
+
+
 <div id="<%= dom_id customer %>">
-  <p>
-    <strong>User:</strong>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
     <%= customer.user_id %>
   </p>
 
-  <p>
-    <strong>Birthday:</strong>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Birthday:</strong>
     <%= customer.birthday %>
   </p>
 
+
+  <% if action_name != "show" %>
+    <%= link_to "Ver detalhes", customer, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Editar', edit_customer_path(customer), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
 </div>
+
+
