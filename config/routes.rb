@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+
   resources :chefs #, only: [:index, :show] do
   #   resource :address, only: [:show]
   #   resource :city, only: [:show]
