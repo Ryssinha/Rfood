@@ -13,19 +13,16 @@ states.each do |state|
   end
 end
 
-admin_user = User.find_or_create_by!(email: 'admin+1@rarolabs.com.br', cpf: '52947611578') do |model|
-  model.attributes = {
-    name: 'Admin RaroFood',
-    password: 'VW1234**'
-  }
-end
+admin_user = User.create(email: 'admin+1@rarolabs.com.br', cpf: '52947611578', name: 'Admin RaroFood', password: 'VW1234**', password_confirmation: 'VW1234**')
+
 admin = Administrator.find_or_create_by!(user: admin_user)
 
-user = User.find_or_create_by!(
+user = User.create(
   name: "Guilherme",
   cpf: "11111111111",
   email: "rarara@.com",
-  password: "123456"
+  password: 'VW1234**',
+  password_confirmation: 'VW1234**'
 )
 
 customer = Customer.find_or_create_by!(
