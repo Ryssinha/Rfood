@@ -1,27 +1,27 @@
 <div id="<%= dom_id order_item %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Order:</strong>
+    <strong class="block font-medium mb-1">Pedido:</strong>
     <%= order_item.order_id %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Dish:</strong>
+    <strong class="block font-medium mb-1">Prato:</strong>
     <%= order_item.dish_id %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Amount:</strong>
+    <strong class="block font-medium mb-1">Valor:</strong>
     <%= order_item.amount %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Unit price:</strong>
+    <strong class="block font-medium mb-1">Preço unitário:</strong>
     <%= order_item.unit_price %>
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this ogder item", order_item, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this ogder item', edit_order_item_path(order_item), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Voltar", order_item, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Editar', edit_order_item_path(order_item), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
 </div>

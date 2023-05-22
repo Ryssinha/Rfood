@@ -1,10 +1,10 @@
-<h1>Editing chef</h1>
 
-<%= render "form", chef: @chef %>
 
-<br>
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editar chefe</h1>
 
-<div>
-  <%= link_to "Show this chef", @chef %> |
-  <%= link_to "Back to chefs", chefs_path %>
+  <%= render "form", chef: @chef %>
+
+  <%= link_to "Ver", @chef, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Voltar", chefs_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>

@@ -1,16 +1,16 @@
 <div id="<%= dom_id order %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Customer:</strong>
+    <strong class="block font-medium mb-1">Cliente:</strong>
     <%= order.customer_id %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Delivery address:</strong>
+    <strong class="block font-medium mb-1">Endereço:</strong>
     <%= order.delivery_address_id %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Total price:</strong>
+    <strong class="block font-medium mb-1">Preço total:</strong>
     <%= order.total_price %>
   </p>
 
@@ -20,18 +20,18 @@
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Freight price:</strong>
+    <strong class="block font-medium mb-1">Valor frete:</strong>
     <%= order.freight_price %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Coupon:</strong>
+    <strong class="block font-medium mb-1">Cupom:</strong>
     <%= order.coupon_id %>
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this order", order, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this order', edit_order_path(order), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Ver", order, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Editar', edit_order_path(order), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
 </div>

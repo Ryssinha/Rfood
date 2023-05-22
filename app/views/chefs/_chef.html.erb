@@ -1,17 +1,25 @@
+
 <div id="<%= dom_id chef %>">
-  <p>
-    <strong>User:</strong>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Usuario:</strong>
     <%= chef.user_id %>
   </p>
 
-  <p>
-    <strong>Address:</strong>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Endereço:</strong>
     <%= chef.address_id %>
   </p>
 
-  <p>
-    <strong>Approver:</strong>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Aprovador:</strong>
     <%= chef.approver_id %>
   </p>
 
+
+  <% if action_name != "show" %>
+    <%= link_to "Ver detalhes", chef, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Editar', edit_chef_path(chef), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
 </div>
+
