@@ -6,4 +6,8 @@ class Administrator < ApplicationRecord
   has_many :registered_coupons, class_name: 'Coupon', dependent: :destroy
 
   accepts_nested_attributes_for :user
+
+  def user_name
+    user.try(:name)
+  end
 end
