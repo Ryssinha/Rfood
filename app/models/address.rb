@@ -7,7 +7,7 @@ class Address < ApplicationRecord
   has_one :chef, inverse_of: :address, dependent: :destroy
   has_one :state, through: :city
 
-  validates :zip_code, :public_place, :number, :neighborhood, presence: true
+  validates :zip_code, :number, :neighborhood, presence: true
   validates :zip_code, length: { is: 8 }
   validates :number, length: { minimum: 1, maximum: 15 }
   validates :name, :reference, :complement, length: { maximum: 255 }, allow_blank: true

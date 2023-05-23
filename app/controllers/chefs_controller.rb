@@ -10,6 +10,8 @@ class ChefsController < ApplicationController
 
   def new
     @chef = Chef.new
+    @chef.build_user
+    @chef.build_address
   end
 
   def edit
@@ -18,7 +20,6 @@ class ChefsController < ApplicationController
 
   def create
     @chef = Chef.new(chef_params)
-
     respond_to do |format|
       if @chef.save
         format.html { redirect_to chef_url(@chef), notice: "Chef was successfully created." }
@@ -57,6 +58,6 @@ class ChefsController < ApplicationController
     end
 
     def chef_params
-      params.require(:chef).permit(:user_id, :address_id, :approver_id)
+      params.require(:chef).permit(:approver_id, user_attributes: [:id, :name, :email, :cpf, :password, :password_confirmation], address_attributes: [:id, :name, :complement, :neighborhood, :zip_code, :number, :city_id ])
     end
 end

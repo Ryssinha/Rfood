@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_172248) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "name", limit: 255
-    t.string "public_place", limit: 255, null: false
+    t.string "public_place", limit: 255
     t.string "zip_code", limit: 8, null: false
     t.string "number", limit: 15, null: false
     t.string "neighborhood", limit: 255, null: false
