@@ -12,13 +12,18 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :chef_id %>
-    <%= form.text_field :chef_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :name, "Nome" %>
+    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :chef_id, "Chefe" %>
+    <%= form.collection_select :chef_id, Chef.all, :id, :id, { prompt: "Selecione um chefe" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :unit_price, "Preço Unitário" %>
+    <%= form.text_field :unit_price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
@@ -27,18 +32,36 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :available %>
-    <%= form.check_box :available, class: "block mt-2 h-5 w-5" %>
+    <%= form.label :available, "Disponivel" %>
+    <div class="flex items-center mt-2">
+      <label class="mr-4">
+        <%= form.radio_button :available, true, class: "mr-1" %>
+        Sim
+      </label>
+      <label style="margin-left: 10px;">
+        <%= form.radio_button :available, false, class: "mr-1" %>
+        Não
+      </label>
+    </div>
   </div>
 
   <div class="my-5">
-    <%= form.label :active %>
-    <%= form.check_box :active, class: "block mt-2 h-5 w-5" %>
+    <%= form.label :active, "Ativo" %>
+    <div class="flex items-center mt-2">
+      <label class="mr-4">
+        <%= form.radio_button :active, true, class: "mr-1" %>
+        Sim
+      </label>
+      <label style="margin-left: 10px;">
+        <%= form.radio_button :active, false, class: "mr-1" %>
+        Não
+      </label>
+    </div>
   </div>
 
   <div class="my-5">
-    <%= form.label :unit_price %>
-    <%= form.text_field :unit_price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :category_id, "Categoria" %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Selecione uma categoria" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">
