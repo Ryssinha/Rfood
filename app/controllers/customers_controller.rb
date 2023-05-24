@@ -10,6 +10,7 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
+    @customer.build_user
   end
 
   def edit
