@@ -1,25 +1,81 @@
-<%= form_with(model: customer, class: "contents") do |form| %>
-  <% if customer.errors.any? %>
+<%= form_for @customer do |form| %>
+  <% if @customer.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+      <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
 
       <ul>
-        <% customer.errors.each do |error| %>
+        <% @customer.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+  <%= form.fields_for :user do |user_form| %>
+    <div class="my-5">
+      <%= user_form.label :name, "Nome" %>
+      <%= user_form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= user_form.label :cpf, "CPF" %>
+      <%= user_form.text_field :cpf, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= user_form.label :email %>
+      <%= user_form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= user_form.label :password, "Senha" %>
+      <%= user_form.password_field :password, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= user_form.label :password_confirmation, "Confirmação de senha" %>
+      <%= user_form.password_field :password_confirmation, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+  <% end %>
 
   <div class="my-5">
     <%= form.label :birthday %>
     <%= form.text_field :birthday, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
+
+  <h1 class="font-bold text-4xl">Endereço</h1>
+
+  <%= form.fields_for :address do |address_form| %>
+    <div class="my-5">
+      <%= address_form.label :name, "Rua" %>
+      <%= address_form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= address_form.label :number, "Numero" %>
+      <%= address_form.text_field :number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= address_form.label :complement, "Complemento" %>
+      <%= address_form.text_field :complement, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= address_form.label :neighborhood, "Bairro" %>
+      <%= address_form.text_field :neighborhood, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= address_form.label :zip_code, "CEP" %>
+      <%= address_form.text_field :zip_code, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= address_form.label :city_id, "Cidade" %>
+      <%= address_form.collection_select :city_id, City.all, :id, :name, {}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
+    </div>
+  <% end %>
 
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>

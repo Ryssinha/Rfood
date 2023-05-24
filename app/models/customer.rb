@@ -15,4 +15,8 @@ class Customer < ApplicationRecord
   accepts_nested_attributes_for :addresses, :telephones, allow_destroy: true
 
   scope :with_orders, -> { joins(:orders).uniq }
+
+  def name
+    user.name
+  end
 end
