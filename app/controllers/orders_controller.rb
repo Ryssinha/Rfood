@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @order.build_delivery_address
   end
 
   def edit
@@ -56,6 +57,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:customer_id, :delivery_address_id, :total_price, :status, :freight_price, :coupon_id)
+      params.require(:order).permit(:customer_id, :total_price, :status, :freight_price, :coupon_id, delivery_address_attributes: [:id, :name, :complement, :neighborhood, :zip_code, :number, :city_id])
     end
 end

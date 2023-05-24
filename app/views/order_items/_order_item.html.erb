@@ -25,3 +25,25 @@
     <hr class="mt-6">
   <% end %>
 </div>
+
+
+<table class="my-5 w-full">
+  <tr>
+    <th>Cod</th>
+    <th>Cliente</th>
+    <th>Valor Total</th>
+    <th>Status</th>
+    <th>Editar</th>
+  </tr>
+  <tr>
+  <td><%= order_item.order_id %></td>
+  <td><%= order_item.order.customer %></td>
+  <td><%= order_item.amount %></td>
+  <td><%= order_item.order.status %></td>
+  <td><%= link_to 'Editar', edit_order_item_path(order_item), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+</tr>
+
+
+
+</table>
+
