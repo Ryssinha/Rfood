@@ -13,22 +13,51 @@
 
   <div class="my-5">
     <%= form.label :cliente %>
-    <%= form.text_field :customer_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.collection_select :customer_id, Customer.all, :id, :name, { prompt: "Selecione um cliente" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :endereço %>
-    <%= form.text_field :delivery_address_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+  <%= form.fields_for :delivery_address do |address_form| %>
+    <div class="my-5">
+      <%= address_form.label :name, "Rua" %>
+      <%= address_form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= address_form.label :number, "Numero" %>
+      <%= address_form.text_field :number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= address_form.label :complement, "Complemento" %>
+      <%= address_form.text_field :complement, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= address_form.label :neighborhood, "Bairro" %>
+      <%= address_form.text_field :neighborhood, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= address_form.label :zip_code, "CEP" %>
+      <%= address_form.text_field :zip_code, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= address_form.label :city_id, "Cidade" %>
+      <%= address_form.collection_select :city_id, City.all, :id, :name, {}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
+    </div>
+  <% end %>
 
   <div class="my-5">
     <%= form.label :preço_total %>
     <%= form.text_field :total_price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+
+
   <div class="my-5">
-    <%= form.label :status %>
-    <%= form.number_field :status, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :status, "Status" %>
+    <%= form.select :status, Order.statuses.keys, {}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
   </div>
 
   <div class="my-5">
@@ -37,11 +66,34 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :cupom %>
-    <%= form.text_field :coupon_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :coupon_id, "Cupom" %>
+    <%= form.collection_select :coupon_id, Coupon.all, :id, :name, {}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
   </div>
 
-  <div class="inline">
+  <div class="my-5">
+    <%= form.label :item_do_pedido %>
+    <%= form.fields_for :order_items do |order_item_form| %>
+       <div class="my-3">
+         <%= order_item_form.label :amount, "Quantidade" %>
+         <%= order_item_form.number_field :amount, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+       </div>
+
+    <div class="my-3">
+      <%= order_item_form.label :dish_id, "Prato" %>
+      <%= order_item_form.collection_select :dish_id, Dish.all, :id, :name, { prompt: "Selecione um prato" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-3">
+      <%= order_item_form.label :unit_price, "Preço unitário" %>
+      <%= order_item_form.text_field :unit_price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+  <% end %>
+
+
+
+
+  </div>
+    <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

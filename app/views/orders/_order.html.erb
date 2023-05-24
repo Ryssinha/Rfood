@@ -1,37 +1,24 @@
-<div id="<%= dom_id order %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Cliente:</strong>
-    <%= order.customer_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Endereço:</strong>
-    <%= order.delivery_address_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Preço total:</strong>
-    <%= order.total_price %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
-    <%= order.status %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Valor frete:</strong>
-    <%= order.freight_price %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Cupom:</strong>
-    <%= order.coupon_id %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Ver", order, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Editar', edit_order_path(order), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+<div class="mx-auto md:w-2/3 w-full">
+  <table class="my-5 w-full border-collapse">
+    <tr>
+      <th class="border border-gray-300 py-2 px-4">Cod</th>
+      <th class="border border-gray-300 py-2 px-4">Cliente</th>
+      <th class="border border-gray-300 py-2 px-4">Valor Total</th>
+      <th class="border border-gray-300 py-2 px-4">Status</th>
+      <th class="border border-gray-300 py-2 px-4">Editar</th>
+    </tr>
+    <tr>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= order.id %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= order.customer.user.name %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= order.total_price %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= order.status %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= link_to 'Editar', edit_order_path(order), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+    </tr>
+  </table>
 </div>
+
+
+
+
+
+
