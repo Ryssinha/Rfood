@@ -1,0 +1,17 @@
+@keyframes slide-in {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .welcome-text {
+    font-size: 70px;
+    text-align: center;
+    margin-top: 200px;
+    animation: slide-in 1.5s ease-out;
+  }

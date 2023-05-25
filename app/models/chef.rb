@@ -13,4 +13,8 @@ class Chef < ApplicationRecord
 
   accepts_nested_attributes_for :user, :address
   accepts_nested_attributes_for :telephones, :dishes, allow_destroy: true
+
+  def name
+    user.name
+  end
 end

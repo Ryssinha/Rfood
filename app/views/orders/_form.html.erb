@@ -16,6 +16,38 @@
     <%= form.collection_select :customer_id, Customer.all, :id, :name, { prompt: "Selecione um cliente" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+
+<table class="my-5 w-full border-collapse">
+  <thead>
+    <tr>
+      <th class="border border-gray-300 py-2 px-4 font-bold">Quantidade</th>
+      <th class="border border-gray-300 py-2 px-4 font-bold">Item</th>
+      <th class="border border-gray-300 py-2 px-4 font-bold">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.items.each do |order_item| %>
+      <tr>
+        <td class="border border-gray-300 py-2 px-4 text-center"><%= order_item.amount %></td>
+        <td class="border border-gray-300 py-2 px-4 text-center"><%= order_item.dish&.name %></td>
+        <td class="border border-gray-300 py-2 px-4 text-center">
+          <% if order_item.amount.present? && order_item.unit_price.present? %>
+            <%= order_item.amount * order_item.unit_price %>
+          <% else %>
+            N/A
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+  <div style="margin-top: 10px; margin-right: 10px; text-align: right;">
+  <%= link_to "Adicionar item ao pedido", new_order_item_path, class: "bg-blue-600 text-white hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"%>
+</div>
+
+
   <%= form.fields_for :delivery_address do |address_form| %>
     <div class="my-5">
       <%= address_form.label :name, "Rua" %>
@@ -48,12 +80,11 @@
     </div>
   <% end %>
 
+
   <div class="my-5">
     <%= form.label :preço_total %>
     <%= form.text_field :total_price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
-
 
   <div class="my-5">
     <%= form.label :status, "Status" %>
@@ -61,7 +92,7 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :valor_frete %>
+    <%= form.label :freight_price, "Valor frete" %>
     <%= form.text_field :freight_price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
@@ -70,28 +101,8 @@
     <%= form.collection_select :coupon_id, Coupon.all, :id, :name, {}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
   </div>
 
+
   <div class="my-5">
-    <%= form.label :item_do_pedido %>
-    <%= form.fields_for :order_items do |order_item_form| %>
-       <div class="my-3">
-         <%= order_item_form.label :amount, "Quantidade" %>
-         <%= order_item_form.number_field :amount, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-       </div>
-
-    <div class="my-3">
-      <%= order_item_form.label :dish_id, "Prato" %>
-      <%= order_item_form.collection_select :dish_id, Dish.all, :id, :name, { prompt: "Selecione um prato" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-    </div>
-
-    <div class="my-3">
-      <%= order_item_form.label :unit_price, "Preço unitário" %>
-      <%= order_item_form.text_field :unit_price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-    </div>
-  <% end %>
-
-
-
-
   </div>
     <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
