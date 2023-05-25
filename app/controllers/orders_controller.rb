@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @order.build_delivery_address
+    @order.items.build
   end
 
   def edit

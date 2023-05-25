@@ -1,5 +1,30 @@
-<header class="flex [&>*]:flex-1 bg-slate-200 p-7">
-  <section class="font-black text-2xl">
+
+  <header class="flex [&>*]:flex-1 bg-blue-600 p-7">
+  <section class="font-black text-2xl text-white">
+  
+  <a href="<%= root_path %>" class="btn-home">
     <h1>RaroFood</h1>
-  </section>
-</header>
+  </a>
+</section>
+
+
+    <div class="md:hidden" id="mobile-menu">
+      <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+        <%= link_to "Pedidos", orders_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+        <%= link_to "Novo cliente", new_customer_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+        <%= link_to "Novo chefe", new_chef_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+        <%= link_to "Novo item pedido", new_order_item_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+        <%= link_to "Nova categoria", new_category_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+        <%= link_to "Novo prato", new_dish_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+
+      </div>
+    </div>
+
+
+  </header>
+
+  <div style="margin-top: 10px; margin-right: 10px; text-align: right;">
+  <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "bg-blue-600 text-white hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"%>
+</div>
+
+
