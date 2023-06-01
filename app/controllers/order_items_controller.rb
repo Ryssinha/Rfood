@@ -17,10 +17,12 @@ class OrderItemsController < ApplicationController
 
   def create
     @order_item = OrderItem.new(order_item_params)
-
+    dish = Dish.find(params[:order_item][:dish_id])
+    order = Order.find(params[:order_item][:order_id])
     respond_to do |format|
       if @order_item.save
-        format.html { redirect_to order_item_url(@order_item), notice: "Order item was successfully created." }
+        SendEmailChefJob.perform_later(dish, order)
+        format.html { redirect_to order_item_url(@order_item), notice: "Item do pedido criado com sucesso." }
         format.json { render :show, status: :created, location: @order_item }
       else
         format.html { render :new, status: :unprocessable_entity }

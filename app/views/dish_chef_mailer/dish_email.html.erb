@@ -1,0 +1,17 @@
+<%= render 'style' %>
+
+<body>
+  <h1>Novo prato adicionado!</h1>
+  <h2><%= @chef_name %>, foi adicionado um novo prato no pedido <%= @order.id %></h2>
+
+  <p><strong>Código do pedido:</strong> <ruby><%= @order.id %></ruby></p>
+  <p><strong>Nome do cliente:</strong> <%= @order.customer.user.name %></p>
+  <p><strong>Email do cliente:</strong> <%= @order.customer.user.email %></p>
+  <p><strong>Nome do prato:</strong> <%= @dish.name %></p>
+  <p><strong>Descrição do prato:</strong> <%= @dish.description %></p>
+  <p><strong>Preço do prato:</strong> <%= @dish.unit_price %></p>
+
+  <a class="btn" href="<%= order_url(@order) %>">Clique aqui para visualizar seu pedido</a>
+  <a class="btn" href="<%= dish_url(@dish) %>">Clique aqui para visualizar seu prato</a>
+</body>
+
