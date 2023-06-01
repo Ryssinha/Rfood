@@ -6,3 +6,4 @@ class SendEmailChefJob < ApplicationJob
     DishChefMailer.dish_email(dish, order).deliver_now
   end
 end
+
