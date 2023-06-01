@@ -36,6 +36,8 @@ gem 'redis', '~> 4.0'
 
 gem 'devise', '~> 4.9.2'
 
+gem 'sidekiq', "~> 7.1"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -89,3 +91,5 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
+
+
