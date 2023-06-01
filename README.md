@@ -19,8 +19,15 @@ bin/rails generate rspec:install
 bin/rails db:migrate db:test:prepare
 ```
 
-Para iniciar o servidor, recomenda-se a utilização do comando `./bin/dev`, pois ele garante os assets serão todos devidamente processados.
+Para iniciar o servidor, recomenda-se a utilização dos seguintes comandos:
 
+```bash
+mailcatcher
+redis-server & bundle exec sidekiq -C config/sidekiq.yml
+bundle exec sidekiq -q default -q dishes
+redis-server
+rails s
+```
 
 Verificar versão do Yarn
 
@@ -28,39 +35,27 @@ Verificar versão do Yarn
 yarn -v
 ```
 
-
 - Banco de dados: PostgreSQL
-
-
 
 
 # Documentação das tomadas de decição
 
-## Rotas
+## Configuração do Sidekiq com Redis
+O Sidekiq, em conjunto com o Redis, foi configurado para permitir o processamento assíncrono de tarefas. O Sidekiq é responsável por enfileirar e executar os jobs de forma eficiente, melhorando a escalabilidade do sistema.
 
-As rotas da aplicação foram configuradas seguindo as melhores práticas do framework Ruby on Rails. Veja abaixo a lista de rotas disponíveis:
+## Configuração do Mailcatcher
+O Mailcatcher foi configurado para facilitar o controle de e-mails durante o desenvolvimento. Com essa configuração, é possível visualizar os e-mails enviados pelo sistema em um ambiente local, facilitando o processo de teste e depuração.
 
-- Rota raiz (home): `root "home#index"`
-- Autenticação de usuários utilizando Devise: `devise_for :users`
-- CRUDs das entidades:
-  - Chefs: `resources :chefs`
-  - Customers: `resources :customers`
-  - Dishes: `resources :dishes`
-  - Categories: `resources :categories`
-  - Orders: `resources :orders`
-  - Order Items: `resources :order_items`
+## Envio de E-mails Assíncronos para Chefes
+Foi implementado o envio de e-mails assíncronos para chefes sempre que um novo prato é adicionado a um pedido. Esses e-mails contêm informações relevantes, como o código do pedido, nome e e-mail do cliente, nome, descrição e preço unitário do prato. Além disso, são fornecidos dois links: um para acessar o pedido e outro para visualizar o prato solicitado. Para garantir que os e-mails sejam enviados imediatamente, um job chamado "SendEmailChefJob".
 
-## Autenticação de Usuários
+## Atualização Automática de Preços de Pedidos
+Quando o preço unitário de um prato é atualizado, é necessário atualizar também o preço unitário dos itens dos pedidos que referenciam esse prato, bem como o preço total do pedido. Para isso, foi implementado um Job chamado "UpdatePriceJob". Esse Job é enfileirado na queue "dishes" e realiza as atualizações apenas para os pedidos que estejam com o status "Iniciado" (started).
 
-A autenticação de usuários foi implementada utilizando a gem Devise, uma poderosa solução para autenticação de usuários em aplicações Rails. Com o Devise, é possível realizar o gerenciamento de usuários, permitindo que eles façam login, se registrem e interajam com a aplicação de acordo com suas permissões.
+## Upload de Fotos e Console de Ferramentas de Estilização do Texto
+Foi implementado o upload de fotos dos pratos, utilizando os recursos do Action Text e Active Storage do Rails. Além disso, um console de ferramentas para estilização do texto (WYSIWYG) foi disponibilizado, melhorando a experiência de edição das descrições dos pratos. Para suportar o processamento das imagens, a gem "image_processing" foi adicionada e as devidas migrations e configurações foram executadas.
 
-## Views e Estilização
-
-Foram criadas views para cada uma das entidades mencionadas acima, seguindo os métodos do CRUD (Create, Read, Update, Delete). As views foram projetadas e estilizadas de forma a proporcionar uma experiência agradável para os usuários. O layout e a aparência das páginas seguem as diretrizes fornecidas pelo professor, mantendo a consistência visual em toda a aplicação.
-
-## Internacionalização
-
-Visando uma melhor experiência para os usuários, todas as palavras e termos presentes na aplicação foram adaptados para o idioma português. Isso proporciona uma maior familiaridade e facilita a compreensão das funcionalidades e recursos disponíveis.
-
+## Estilização das Views
+Foram realizadas melhorias na qualidade visual das views, buscando proporcionar uma experiência aprimorada para os usuários do sistema. As views foram estilizadas de forma agradável e intuitiva, proporcionando uma melhor usabilidade e interação com o Raro Food.
 
 
