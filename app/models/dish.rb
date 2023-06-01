@@ -3,7 +3,7 @@
 class Dish < ApplicationRecord
   # Comentado para evitar default_scope
   # default_scope { where(active: true, available: true) }
-
+  has_rich_text :description
   belongs_to :chef
   has_and_belongs_to_many :categories
 

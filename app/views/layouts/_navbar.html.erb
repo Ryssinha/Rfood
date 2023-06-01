@@ -1,21 +1,21 @@
 
   <header class="flex [&>*]:flex-1 bg-blue-600 p-7">
   <section class="font-black text-2xl text-white">
-  
+
   <a href="<%= root_path %>" class="btn-home">
     <h1>RaroFood</h1>
   </a>
 </section>
 
 
-    <div class="md:hidden" id="mobile-menu">
+    <div  id="mobile-menu">
       <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
         <%= link_to "Pedidos", orders_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
-        <%= link_to "Novo cliente", new_customer_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
-        <%= link_to "Novo chefe", new_chef_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
-        <%= link_to "Novo item pedido", new_order_item_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
-        <%= link_to "Nova categoria", new_category_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
-        <%= link_to "Novo prato", new_dish_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+        <%= link_to "Clientes", customers_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+        <%= link_to "Chefes", chefs_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+        <%= link_to "Items pedido", order_items_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+        <%= link_to "Categorias", categories_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+        <%= link_to "Pratos", dishes_path, class: "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
 
       </div>
     </div>
