@@ -34,4 +34,9 @@ class Order < ApplicationRecord
     total = items.sum('amount * unit_price').to_f
     update(total_price: total)
   end
+
+  def calculate_total_price
+    self.total_price = items.sum { |item| item.amount * item.unit_price }
+  end
+
 end

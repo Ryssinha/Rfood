@@ -3,8 +3,6 @@
 :timeout: 30
 :queues:
   - default
-  - orders
-  - dishes
 
 development:
   :concurrency: 5

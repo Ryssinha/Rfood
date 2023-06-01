@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
   root "home#index"
   devise_for :users
@@ -19,4 +20,6 @@ Rails.application.routes.draw do
   resources :states, only: [:index, :show] do
     resources :cities, only: [:index]
   end
+
+  mount Sidekiq::Web => '/sidekiq'
 end
