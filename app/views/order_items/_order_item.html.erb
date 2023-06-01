@@ -1,47 +1,27 @@
-<div id="<%= dom_id order_item %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Pedido:</strong>
-    <%= order_item.order_id %>
-  </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Prato:</strong>
-    <%= order_item.dish_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Valor:</strong>
-    <%= order_item.amount %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Preço unitário:</strong>
-    <%= order_item.unit_price %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Voltar", order_item, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Editar', edit_order_item_path(order_item), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+<div class="mx-auto md:w-2/3 w-full">
+  <table class="my-5 w-full border-collapse">
+    <tr>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Pedido</td>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Prato</td>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Valor</td>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Preço unitário</td>
+      <% if action_name != "show" %>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Editar</td>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Ver</td>
+      <% end %>
+    </tr>
+    <tr>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= order_item.order_id %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= order_item.dish.name %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= order_item.amount %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= order_item.unit_price %></td>
+      <% if action_name != "show" %>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= link_to 'Editar', edit_order_path(order_item), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= link_to 'Ver', order_item, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+        <% end %>
+    </tr>
+  </table>
 </div>
 
-
-<table class="my-5 w-full">
-  <tr>
-    <th>Cod</th>
-    <th>Cliente</th>
-    <th>Valor Total</th>
-    <th>Status</th>
-    <th>Editar</th>
-  </tr>
-  <tr>
-  <td><%= order_item.order_id %></td>
-  <td><%= order_item.order.customer %></td>
-  <td><%= order_item.amount %></td>
-  <td><%= order_item.order.status %></td>
-  <td><%= link_to 'Editar', edit_order_item_path(order_item), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
-</tr>
-
-</table>
 

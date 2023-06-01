@@ -1,37 +1,33 @@
-<div id="<%= dom_id dish %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Chef:</strong>
-    <%= dish.chef_id %>
-  </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= dish.name %>
-  </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= dish.description %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Available:</strong>
-    <%= dish.available %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Active:</strong>
-    <%= dish.active %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Unit price:</strong>
-    <%= dish.unit_price %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this dish", dish, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this dish', edit_dish_path(dish), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+<div class="mx-auto  w-full">
+  <table class="my-5 w-full border-collapse">
+    <tr>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Chefe</td>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Nome</td>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Descrição</td>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Disponivel</td>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Ativo</td>
+      <% if action_name != "show" %>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Editar</td>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Ver</td>
+        <% end %>
+    </tr>
+    <tr>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= dish.chef.user.name %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= dish.name %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= dish.description %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= dish.available %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= dish.available %></td>
+        <% if action_name != "show" %>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= link_to 'Editar', edit_dish_path(dish), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= link_to 'Ver', dish, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <% end %>
+    </tr>
+  </table>
 </div>
+
+
+
+
+

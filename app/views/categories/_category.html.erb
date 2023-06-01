@@ -1,12 +1,19 @@
-<div id="<%= dom_id category %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= category.name %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Ver detalhes", category, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Editar', edit_category_path(category), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+<div class="mx-auto  w-full">
+  <table class="my-5 w-full border-collapse">
+    <tr>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Nome</td>
+      <td class="border border-gray-300 py-2 px-4
+      <% if action_name != "show" %>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Editar</td>
+      <td class="border border-gray-300 py-2 px-4 font-bold">Ver</td>
+        <% end %>
+    </tr>
+    <tr>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= category.name %></td>
+        <% if action_name != "show" %>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= link_to 'Editar', edit_category_path(category), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <td class="border border-gray-300 py-2 px-4 text-center"><%= link_to 'Ver', category, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <% end %>
+    </tr>
+  </table>
 </div>
