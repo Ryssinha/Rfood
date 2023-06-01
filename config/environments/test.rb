@@ -59,4 +59,14 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+    # This line let us able to use ActionMailer::Base.deliveries.count
+    config.action_mailer.delivery_method = :test
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+
+    # This line let us to use expect(...).to have_enqueued_job.on_queue('mailers')
+    config.active_job.queue_adapter = :test
+
+    config.action_mailer.default_url_options = { host: 'localhost' }
+
 end

@@ -1,5 +1,7 @@
 # app/jobs/update_price_job.rb
 class UpdatePriceJob < ApplicationJob
+  queue_as :dishes
+  sidekiq_options retry: 5
 
   def perform(dish_id, new_unit_price)
     dish = Dish.find(dish_id)
