@@ -22,9 +22,11 @@ class OrderItemsController < ApplicationController
     respond_to do |format|
       if @order_item.save
         SendEmailChefJob.perform_later(dish, order)
+        format.turbo_stream { render turbo_stream: turbo_stream.prepend("items_list", partial: "order_item_entry", locals: { order_item: @order_item }) }
         format.html { redirect_to order_item_url(@order_item), notice: "Item do pedido criado com sucesso." }
         format.json { render :show, status: :created, location: @order_item }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("error_explanation", partial: "shared/error_explanation", locals: { object: @order_item }) }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @order_item.errors, status: :unprocessable_entity }
       end

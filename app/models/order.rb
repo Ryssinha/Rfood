@@ -25,6 +25,8 @@ class Order < ApplicationRecord
   validates :total_price, numericality: { is_greater_than_or_equal_to: 0 }, on: :update
 
   accepts_nested_attributes_for :delivery_address, :items, allow_destroy: true
+  accepts_nested_attributes_for :items, allow_destroy: true
+
 
   scope :started_between, ->(start_date, end_date) { started.where('created_at BETWEEN ? AND ?', start_date, end_date) }
 

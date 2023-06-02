@@ -19,6 +19,12 @@ class OrderItem < ApplicationRecord
                                                                          .where(orders: { status: :finished })
                                                    }
 
+def initialize(attributes = {})
+  super(attributes)
+  self.dish ||= Dish.find_by(id: attributes[:dish_id]) if attributes
+end
+
+
   def total_per_item
     amount * unit_price
   end
@@ -26,6 +32,7 @@ class OrderItem < ApplicationRecord
   private
 
   def can_add_item?
+    return unless dish
     errors.add(:dish_id, 'is not an active and available item') unless dish.can_be_sold?
   end
 
@@ -34,6 +41,6 @@ class OrderItem < ApplicationRecord
   end
 
   def set_unit_price
-    self.unit_price = dish.unit_price.to_f
+    self.unit_price = dish&.unit_price.to_f
   end
 end
