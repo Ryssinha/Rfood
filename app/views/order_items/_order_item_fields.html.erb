@@ -1,0 +1,12 @@
+<h2>Itens do pedido</h2>
+<div class="nested-fields">
+  <%= form.fields_for :items, child_index: 'NEW_RECORD' do |item_form| %>
+      <h3>Prato</h3>
+    <%= item_form.collection_select :dish_id, Dish.all, :id, :name, { prompt: 'Selecione um prato' }, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+    <h3>Valor</h3>
+    <%= item_form.number_field :amount, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+    <%= item_form.hidden_field :_destroy %>
+    <%= link_to 'Remover item', '#', class: 'remove-item', data: { action: 'click->order-items#removeItem' }, class: 'bg-blue-600 text-white hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium' %>
+    <%= item_form.submit 'Salvar item', class: 'bg-blue-600 text-white hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium' %>
+  <% end %>
+</div>

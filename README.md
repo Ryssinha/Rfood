@@ -58,4 +58,6 @@ Foi implementado o upload de fotos dos pratos, utilizando os recursos do Action 
 ## Estilização das Views
 Foram realizadas melhorias na qualidade visual das views, buscando proporcionar uma experiência aprimorada para os usuários do sistema. As views foram estilizadas de forma agradável e intuitiva, proporcionando uma melhor usabilidade e interação com o Raro Food.
 
+## Hotwire - Adição Dinâmica de Itens do Pedido
+Foi utilizado o Hotwire para atualizar a tela de cadastro de pedidos, adicionando o recurso de adição dinâmica de itens do pedido. Agora, ao **editar** um pedido, é possível adicionar um novo item na tabela de forma dinâmica, sem a necessidade de recarregar a página. Isso foi implementado utilizando Turbo Streams ou Stimulus Components.
 
